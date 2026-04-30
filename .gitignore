@@ -1,0 +1,85 @@
+# ========================
+# Python / cache
+# ========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ========================
+# Virtual environments
+# ========================
+.venv/
+.venv_openvoice/
+.venv310/
+.venv_ui/
+
+# ========================
+# Model / AI assets (local heavy files)
+# ========================
+models/
+OpenVoice/
+reference_voices/
+
+# ========================
+# Output / runtime generated files
+# ========================
+output/
+logs/
+input/
+processed/
+temp/
+tmp/
+
+# ========================
+# Gradio / UI runtime
+# ========================
+.gradio/
+
+# ========================
+# FFmpeg binaries
+# ========================
+ffmpeg.exe
+
+# ========================
+# Archives / datasets
+# ========================
+files.zip
+train_data/
+*.zip
+*.tar
+*.tar.gz
+
+# ========================
+# Temp / debug files
+# ========================
+temp_lang.txt
+*.log
+
+# ========================
+# OS / IDE
+# ========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+.env
+# Secrets
+*.env
+*.key
+*secret*
+*token*
+
+# Audio / model binaries
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.pth
+*.pt
+*.bin
+*.safetensors
+*.ckpt
+*.onnx
+*.env

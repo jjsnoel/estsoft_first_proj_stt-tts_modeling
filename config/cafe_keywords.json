@@ -1,0 +1,955 @@
+{
+  "meta": {
+    "domain": "cafe",
+    "languages": [
+      "en",
+      "zh",
+      "zh-Hans",
+      "zh-Hant"
+    ],
+    "version": "2.9-cn-caramel-macchiato-context",
+    "description": "Cafe order keywords v2.9: Chinese caramel macchiato STT variants and context cleanup."
+  },
+  "slots": {
+    "temperature": {
+      "ice": {
+        "label_ui_ko": "아이스",
+        "patterns": [
+          "\\biced\\b",
+          "\\bice\\b",
+          "\\bcold\\b",
+          "冰的",
+          "加冰",
+          "冰吗",
+          "冰嗎"
+        ]
+      },
+      "hot": {
+        "label_ui_ko": "핫",
+        "patterns": [
+          "\\bhot\\b",
+          "热的",
+          "熱的"
+        ]
+      }
+    },
+    "size": {
+      "small": {
+        "label_ui_ko": "스몰",
+        "patterns": [
+          "\\bsmall\\b"
+        ]
+      },
+      "medium": {
+        "label_ui_ko": "미디엄",
+        "patterns": [
+          "\\bmedium\\b"
+        ]
+      },
+      "large": {
+        "label_ui_ko": "라지",
+        "patterns": [
+          "\\blarge\\b"
+        ]
+      },
+      "tall": {
+        "label_ui_ko": "톨",
+        "patterns": [
+          "\\btall\\b"
+        ]
+      },
+      "grande": {
+        "label_ui_ko": "그란데",
+        "patterns": [
+          "\\bgrande\\b"
+        ]
+      },
+      "venti": {
+        "label_ui_ko": "벤티",
+        "patterns": [
+          "\\bventi\\b",
+          "\\bb\\.?\\s*t\\.?\\b",
+          "\\bv\\.?\\s*t\\.?\\b"
+        ]
+      },
+      "small_cup": {
+        "label_ui_ko": "소컵",
+        "patterns": [
+          "小杯"
+        ]
+      },
+      "medium_cup": {
+        "label_ui_ko": "중컵",
+        "patterns": [
+          "中杯"
+        ]
+      },
+      "large_cup": {
+        "label_ui_ko": "대컵",
+        "patterns": [
+          "大杯"
+        ]
+      },
+      "extra_large_cup": {
+        "label_ui_ko": "특대컵",
+        "patterns": [
+          "超大杯"
+        ]
+      }
+    },
+    "shot": {
+      "extra": {
+        "label_ui_ko": "샷 추가",
+        "patterns": [
+          "extra shot",
+          "add shot",
+          "one more shot",
+          "double shot",
+          "加一份浓缩",
+          "加一份濃縮",
+          "加浓缩",
+          "加濃縮",
+          "双份浓缩",
+          "雙份濃縮"
+        ]
+      },
+      "less": {
+        "label_ui_ko": "샷 적게",
+        "patterns": [
+          "less shot",
+          "half shot",
+          "light shot",
+          "少一份浓缩",
+          "少一份濃縮"
+        ]
+      }
+    },
+    "syrup": {
+      "vanilla": {
+        "label_ui_ko": "바닐라 시럽",
+        "patterns": [
+          "vanilla syrup",
+          "\\bvanilla\\b",
+          "香草糖浆",
+          "香草糖漿",
+          "香草"
+        ]
+      },
+      "hazelnut": {
+        "label_ui_ko": "헤이즐넛 시럽",
+        "patterns": [
+          "hazelnut syrup",
+          "\\bhazelnut\\b",
+          "榛果糖浆",
+          "榛果糖漿",
+          "榛果"
+        ]
+      },
+      "caramel": {
+        "label_ui_ko": "카라멜 시럽",
+        "patterns": [
+          "caramel syrup",
+          "\\bcaramel\\b",
+          "焦糖糖浆",
+          "焦糖糖漿",
+          "焦糖"
+        ]
+      },
+      "none": {
+        "label_ui_ko": "시럽 제외",
+        "patterns": [
+          "no syrup",
+          "without syrup",
+          "don't add syrup",
+          "不要糖浆",
+          "不要糖漿",
+          "不加糖浆",
+          "不加糖漿",
+          "no\\s*syrup",
+          "without\\s*(any\\s*)?syrup",
+          "don'?t\\s*add\\s*(any\\s*)?syrup",
+          "don'?t\\s*need\\s*(any\\s*)?syrup",
+          "hold\\s*the\\s*syrup",
+          "skip\\s*the\\s*syrup",
+          "시럽\\s*빼주세요",
+          "시럽\\s*빼고",
+          "시럽\\s*없이",
+          "시럽\\s*필요\\s*없어요",
+          "시럽\\s*괜찮아요",
+          "不用糖浆",
+          "不用糖漿"
+        ]
+      },
+      "less": {
+        "label_ui_ko": "시럽 적게",
+        "patterns": [
+          "less syrup",
+          "a little syrup",
+          "少糖浆",
+          "少糖漿"
+        ]
+      },
+      "needed": {
+        "label_ui_ko": "시럽 추가/사용",
+        "patterns": [
+          "syrup\\s*please",
+          "with\\s*(some\\s*)?syrup",
+          "add\\s*(some\\s*)?syrup",
+          "some\\s*syrup",
+          "yes[, ]*syrup",
+          "syrup\\s*is\\s*okay",
+          "시럽\\s*넣어주세요",
+          "시럽\\s*추가",
+          "시럽\\s*주세요",
+          "시럽\\s*넣어도\\s*돼요",
+          "加糖浆",
+          "加糖漿",
+          "要糖浆",
+          "要糖漿"
+        ]
+      },
+      "offered": {
+        "label_ui_ko": "시럽 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*(need|want)\\s*(some\\s*)?syrup",
+          "would\\s*you\\s*like\\s*(some\\s*)?syrup",
+          "need\\s*(some\\s*)?syrup",
+          "want\\s*(some\\s*)?syrup",
+          "any\\s*syrup",
+          "syrup\\?",
+          "시럽\\s*필요하세요",
+          "시럽\\s*넣어드릴까요",
+          "시럽\\s*드릴까요",
+          "糖浆吗",
+          "糖漿嗎",
+          "要糖浆吗",
+          "要糖漿嗎"
+        ]
+      }
+    },
+    "sweetness": {
+      "less": {
+        "label_ui_ko": "덜 달게",
+        "patterns": [
+          "less sweet",
+          "not too sweet",
+          "little sugar",
+          "少糖",
+          "少一点糖",
+          "少一點糖"
+        ]
+      },
+      "none": {
+        "label_ui_ko": "무가당",
+        "patterns": [
+          "no sugar",
+          "without sugar",
+          "sugar free",
+          "不要糖",
+          "不加糖",
+          "无糖",
+          "無糖"
+        ]
+      },
+      "extra": {
+        "label_ui_ko": "더 달게",
+        "patterns": [
+          "extra sweet",
+          "more sugar",
+          "add sugar",
+          "多糖",
+          "加糖",
+          "甜一点",
+          "甜一點"
+        ]
+      }
+    },
+    "milk": {
+      "oat": {
+        "label_ui_ko": "오트밀크",
+        "patterns": [
+          "oat milk",
+          "燕麦奶",
+          "燕麥奶"
+        ]
+      },
+      "soy": {
+        "label_ui_ko": "두유",
+        "patterns": [
+          "soy milk",
+          "豆奶",
+          "豆浆",
+          "豆漿"
+        ]
+      },
+      "almond": {
+        "label_ui_ko": "아몬드밀크",
+        "patterns": [
+          "almond milk",
+          "杏仁奶"
+        ]
+      },
+      "lowfat": {
+        "label_ui_ko": "저지방 우유",
+        "patterns": [
+          "low fat milk",
+          "skim milk",
+          "脱脂牛奶",
+          "低脂牛奶"
+        ]
+      },
+      "none": {
+        "label_ui_ko": "우유 제외",
+        "patterns": [
+          "no milk",
+          "without milk",
+          "不要牛奶",
+          "不加牛奶"
+        ]
+      }
+    },
+    "ice_amount": {
+      "less": {
+        "label_ui_ko": "얼음 적게",
+        "patterns": [
+          "less ice",
+          "light ice",
+          "little ice",
+          "少冰"
+        ]
+      },
+      "none": {
+        "label_ui_ko": "얼음 없이",
+        "patterns": [
+          "no ice",
+          "without ice",
+          "不要冰",
+          "去冰"
+        ]
+      },
+      "extra": {
+        "label_ui_ko": "얼음 많이",
+        "patterns": [
+          "extra ice",
+          "more ice",
+          "多冰"
+        ]
+      }
+    },
+    "foam": {
+      "less": {
+        "label_ui_ko": "거품 적게",
+        "patterns": [
+          "less foam",
+          "light foam",
+          "少奶泡"
+        ]
+      },
+      "none": {
+        "label_ui_ko": "거품 없이",
+        "patterns": [
+          "no foam",
+          "without foam",
+          "不要奶泡",
+          "去奶泡"
+        ]
+      },
+      "extra": {
+        "label_ui_ko": "거품 많이",
+        "patterns": [
+          "extra foam",
+          "more foam",
+          "多奶泡"
+        ]
+      }
+    },
+    "whipped_cream": {
+      "none": {
+        "label_ui_ko": "휘핑 제외",
+        "patterns": [
+          "no whipped cream",
+          "without whipped cream",
+          "不要奶油",
+          "不要鲜奶油",
+          "不要鮮奶油"
+        ]
+      },
+      "extra": {
+        "label_ui_ko": "휘핑 추가",
+        "patterns": [
+          "extra whipped cream",
+          "add whipped cream",
+          "加奶油",
+          "加鲜奶油",
+          "加鮮奶油"
+        ]
+      }
+    },
+    "decaf": {
+      "yes": {
+        "label_ui_ko": "디카페인",
+        "patterns": [
+          "decaf",
+          "decaffeinated",
+          "低咖啡因",
+          "无咖啡因",
+          "無咖啡因",
+          "\\bd\\.?\\s*f\\.?\\b",
+          "\\bd\\s*f\\b"
+        ]
+      }
+    },
+    "takeout": {
+      "yes": {
+        "label_ui_ko": "포장",
+        "patterns": [
+          "\\bcarry\\s*out\\b",
+          "\\bfor\\s*takeout\\b",
+          "\\btake\\s*away\\b",
+          "\\btake\\s*out\\b",
+          "\\btakeaway\\b",
+          "\\btakeout\\b",
+          "\\bto\\s*go\\b",
+          "\\bto\\s*take\\s*away\\b",
+          "\\btogo\\b",
+          "take out",
+          "takeaway",
+          "to go",
+          "外带",
+          "外帶",
+          "带走",
+          "帶走",
+          "打包",
+          "가져갈게요",
+          "가지고 갈게요",
+          "테이크아웃",
+          "포장"
+        ]
+      }
+    },
+    "dine_in": {
+      "yes": {
+        "label_ui_ko": "매장 이용",
+        "patterns": [
+          "\\bdine\\s*in\\b",
+          "\\bdrink\\s*here\\b",
+          "\\beat\\s*in\\b",
+          "\\bfor\\s*here\\b",
+          "\\bhere\\s*please\\b",
+          "\\bstay\\s*here\\b",
+          "dine in",
+          "for here",
+          "here please",
+          "在这喝",
+          "在这里喝",
+          "在這喝",
+          "在這裡喝",
+          "堂食",
+          "店内",
+          "마시고 갈게요",
+          "매장",
+          "매장에서",
+          "먹고 갈게요"
+        ]
+      }
+    },
+    "receipt": {
+      "offered": {
+        "label_ui_ko": "영수증 확인 질문",
+        "patterns": [
+          "\\breceipt\\b",
+          "\\brecipe\\b",
+          "\\breciept\\b",
+          "did\\s*you\\s*want\\s*to\\s*receive",
+          "do\\s*you\\s*want\\s*to\\s*receive",
+          "did\\s*you\\s*want\\s*(a\\s*|your\\s*)?receipt",
+          "do\\s*you\\s*(want|need)\\s*(a\\s*|your\\s*)?receipt",
+          "would\\s*you\\s*like\\s*(a\\s*|your\\s*)?receipt",
+          "need\\s*(a\\s*|your\\s*)?receipt",
+          "영수증",
+          "영수증\\s*드릴까요",
+          "小票",
+          "收据",
+          "發票",
+          "发票"
+        ]
+      },
+      "accepted": {
+        "label_ui_ko": "영수증 요청",
+        "patterns": [
+          "receipt\\s*please",
+          "yes[, ]*(a\\s*)?receipt",
+          "i\\s*(want|need)\\s*(a\\s*|the\\s*)?receipt",
+          "can\\s*i\\s*get\\s*(a\\s*|the\\s*)?receipt",
+          "give\\s*me\\s*(a\\s*|the\\s*)?receipt",
+          "영수증\\s*주세요",
+          "영수증\\s*필요해요",
+          "要小票",
+          "要收据",
+          "要发票",
+          "要發票"
+        ]
+      },
+      "declined": {
+        "label_ui_ko": "영수증 필요 없음",
+        "patterns": [
+          "no\\s*receipt",
+          "no[, ]*receipt[, ]*thanks?",
+          "receipt\\s*(is\\s*)?(not\\s*)?needed",
+          "don'?t\\s*need\\s*(a\\s*)?receipt",
+          "without\\s*(a\\s*)?receipt",
+          "영수증\\s*괜찮아요",
+          "영수증\\s*필요\\s*없어요",
+          "영수증\\s*안\\s*주셔도\\s*돼요",
+          "不要小票",
+          "不要收据",
+          "不用小票",
+          "不用收据"
+        ]
+      }
+    },
+    "warming": {
+      "yes": {
+        "label_ui_ko": "데워줌",
+        "patterns": [
+          "warmed up",
+          "warm it up",
+          "heat it up",
+          "heated",
+          "toasted",
+          "toast(ed)?",
+          "加热",
+          "加熱",
+          "热一下",
+          "熱一下"
+        ]
+      }
+    },
+    "drink": {
+      "americano": {
+        "label_ui_ko": "아메리카노",
+        "patterns": [
+          "americano",
+          "美式",
+          "美式咖啡"
+        ]
+      },
+      "latte": {
+        "label_ui_ko": "라떼",
+        "patterns": [
+          "\\blatte\\b",
+          "拿铁",
+          "拿鐵"
+        ]
+      },
+      "mocha": {
+        "label_ui_ko": "화이트초콜릿 모카",
+        "patterns": [
+          "white chocolate mocha",
+          "\\bmocha\\b",
+          "摩卡"
+        ]
+      },
+      "caramel_macchiato": {
+        "label_ui_ko": "카라멜 마키아토",
+        "patterns": [
+          "caramel macchiato",
+          "焦糖马戚朵",
+          "焦糖馬戚朵",
+          "焦糖玛奇朵",
+          "焦糖瑪奇朵",
+          "焦糖马奇朵",
+          "焦糖馬奇朵"
+        ]
+      },
+      "macchiato": {
+        "label_ui_ko": "마키아토",
+        "patterns": [
+          "macchiato",
+          "玛奇朵",
+          "瑪奇朵",
+          "马戚朵",
+          "馬戚朵",
+          "马奇朵",
+          "馬奇朵"
+        ]
+      },
+      "coffee": {
+        "label_ui_ko": "브루드 커피(일반 커피)",
+        "patterns": [
+          "\\bblack\\s*coffee\\b",
+          "\\bregular\\s*coffee\\b",
+          "\\bdrip\\s*coffee\\b",
+          "\\bbrewed\\s*coffee\\b",
+          "hot coffee",
+          "\\bcoffee\\b",
+          "咖啡"
+        ]
+      }
+    },
+    "bakery": {
+      "banana_nut_bread": {
+        "label_ui_ko": "바나나 넛 브레드",
+        "patterns": [
+          "banana nut bread"
+        ]
+      },
+      "apple_pie": {
+        "label_ui_ko": "애플파이",
+        "patterns": [
+          "apple pie"
+        ]
+      },
+      "chocolate_twist": {
+        "label_ui_ko": "초콜릿 트위스트",
+        "patterns": [
+          "chocolate twist"
+        ]
+      },
+      "blueberry_muffin": {
+        "label_ui_ko": "블루베리 머핀",
+        "patterns": [
+          "blueberry muffin",
+          "\\bblueberry\\s*muffins?\\b",
+          "블루베리 머핀",
+          "蓝莓松饼",
+          "藍莓鬆餅",
+          "blueberry muffins"
+        ]
+      }
+    },
+    "personal_cup": {
+      "yes": {
+        "label_ui_ko": "개인컵/텀블러 사용",
+        "patterns": [
+          "\\bmy\\s*(own\\s*)?cup\\b",
+          "\\bown\\s*cup\\b",
+          "\\bpersonal\\s*cup\\b",
+          "\\breusable\\s*cup\\b",
+          "\\btumbler\\b",
+          "\\btravel\\s*mug\\b",
+          "\\bbring\\s*my\\s*(own\\s*)?cup\\b",
+          "\\buse\\s*my\\s*(own\\s*)?cup\\b",
+          "텀블러",
+          "개인컵",
+          "개인 컵",
+          "다회용컵",
+          "다회용 컵",
+          "제 컵",
+          "제 텀블러",
+          "自带杯",
+          "自帶杯",
+          "自己的杯子",
+          "环保杯",
+          "環保杯"
+        ]
+      },
+      "no": {
+        "label_ui_ko": "개인컵 없음",
+        "patterns": [
+          "no\\s*(own\\s*)?cup",
+          "no\\s*personal\\s*cup",
+          "don'?t\\s*have\\s*(my\\s*)?(own\\s*)?cup",
+          "텀블러 없어요",
+          "개인컵 없어요",
+          "개인 컵 없어요",
+          "没有自带杯",
+          "沒有自帶杯"
+        ]
+      },
+      "offered": {
+        "label_ui_ko": "개인컵/텀블러 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*have\\s*(your\\s*)?(own\\s*)?cup",
+          "are\\s*you\\s*using\\s*(your\\s*)?(own\\s*)?cup",
+          "personal\\s*cup\\s*discount",
+          "reusable\\s*cup\\s*discount",
+          "텀블러 있으세요",
+          "개인컵 있으세요",
+          "개인 컵 있으세요",
+          "自带杯吗",
+          "自帶杯嗎"
+        ]
+      }
+    },
+    "cup_type": {
+      "disposable": {
+        "label_ui_ko": "일회용컵",
+        "patterns": [
+          "\\bdisposable\\s*cup\\b",
+          "\\bpaper\\s*cup\\b",
+          "\\bto\\s*go\\s*cup\\b",
+          "\\btakeout\\s*cup\\b",
+          "일회용컵",
+          "일회용 컵",
+          "종이컵",
+          "纸杯",
+          "紙杯",
+          "一次性杯"
+        ]
+      },
+      "mug": {
+        "label_ui_ko": "매장컵/머그잔",
+        "patterns": [
+          "\\bmug\\b",
+          "\\bceramic\\s*cup\\b",
+          "\\bglass\\s*cup\\b",
+          "\\bfor\\s*here\\s*cup\\b",
+          "머그잔",
+          "머그컵",
+          "매장컵",
+          "매장 컵",
+          "유리컵",
+          "马克杯",
+          "馬克杯",
+          "店内杯"
+        ]
+      }
+    },
+    "straw": {
+      "offered": {
+        "label_ui_ko": "빨대 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*(need|want)\\s*(a\\s*)?straw",
+          "would\\s*you\\s*like\\s*(a\\s*)?straw",
+          "need\\s*(a\\s*)?straw",
+          "빨대 필요하세요",
+          "빨대 드릴까요",
+          "吸管吗",
+          "吸管嗎"
+        ]
+      },
+      "needed": {
+        "label_ui_ko": "빨대 필요",
+        "patterns": [
+          "straw\\s*please",
+          "with\\s*(a\\s*)?straw",
+          "can\\s*i\\s*get\\s*(a\\s*)?straw",
+          "빨대 주세요",
+          "빨대 필요해요",
+          "要吸管",
+          "需要吸管"
+        ]
+      },
+      "not_needed": {
+        "label_ui_ko": "빨대 필요 없음",
+        "patterns": [
+          "no\\s*straw",
+          "without\\s*(a\\s*)?straw",
+          "don'?t\\s*need\\s*(a\\s*)?straw",
+          "빨대 괜찮아요",
+          "빨대 필요 없어요",
+          "빨대 빼주세요",
+          "不要吸管",
+          "不用吸管"
+        ]
+      }
+    },
+    "lid": {
+      "offered": {
+        "label_ui_ko": "뚜껑 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*(need|want)\\s*(a\\s*)?lid",
+          "would\\s*you\\s*like\\s*(a\\s*)?lid",
+          "need\\s*(a\\s*)?lid",
+          "뚜껑 필요하세요",
+          "뚜껑 드릴까요",
+          "杯盖吗",
+          "杯蓋嗎"
+        ]
+      },
+      "needed": {
+        "label_ui_ko": "뚜껑 필요",
+        "patterns": [
+          "lid\\s*please",
+          "with\\s*(a\\s*)?lid",
+          "can\\s*i\\s*get\\s*(a\\s*)?lid",
+          "뚜껑 주세요",
+          "뚜껑 필요해요",
+          "要杯盖",
+          "要杯蓋"
+        ]
+      },
+      "not_needed": {
+        "label_ui_ko": "뚜껑 필요 없음",
+        "patterns": [
+          "no\\s*lid",
+          "without\\s*(a\\s*)?lid",
+          "don'?t\\s*need\\s*(a\\s*)?lid",
+          "뚜껑 괜찮아요",
+          "뚜껑 필요 없어요",
+          "뚜껑 빼주세요",
+          "不要杯盖",
+          "不要杯蓋",
+          "不用杯盖",
+          "不用杯蓋"
+        ]
+      }
+    },
+    "carrier": {
+      "offered": {
+        "label_ui_ko": "컵캐리어 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*(need|want)\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "would\\s*you\\s*like\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "need\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "캐리어 필요하세요",
+          "캐리어 드릴까요",
+          "컵캐리어 필요하세요",
+          "杯架吗",
+          "杯架嗎"
+        ]
+      },
+      "needed": {
+        "label_ui_ko": "컵캐리어 필요",
+        "patterns": [
+          "(cup\\s*)?(carrier|tray)\\s*please",
+          "with\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "can\\s*i\\s*get\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "캐리어 주세요",
+          "컵캐리어 주세요",
+          "컵 홀더 주세요",
+          "杯架"
+        ]
+      },
+      "not_needed": {
+        "label_ui_ko": "컵캐리어 필요 없음",
+        "patterns": [
+          "no\\s*(cup\\s*)?(carrier|tray)",
+          "without\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "don'?t\\s*need\\s*(a\\s*)?(cup\\s*)?(carrier|tray)",
+          "캐리어 괜찮아요",
+          "캐리어 필요 없어요",
+          "不要杯架",
+          "不用杯架"
+        ]
+      }
+    },
+    "shopping_bag": {
+      "offered": {
+        "label_ui_ko": "봉투 확인 질문",
+        "patterns": [
+          "do\\s*you\\s*(need|want)\\s*(a\\s*)?(paper\\s*)?bag",
+          "would\\s*you\\s*like\\s*(a\\s*)?(paper\\s*)?bag",
+          "need\\s*(a\\s*)?(paper\\s*)?bag",
+          "봉투 필요하세요",
+          "봉투 드릴까요",
+          "袋子吗",
+          "袋子嗎"
+        ]
+      },
+      "needed": {
+        "label_ui_ko": "봉투 필요",
+        "patterns": [
+          "bag\\s*please",
+          "paper\\s*bag\\s*please",
+          "with\\s*(a\\s*)?(paper\\s*)?bag",
+          "can\\s*i\\s*get\\s*(a\\s*)?(paper\\s*)?bag",
+          "봉투 주세요",
+          "봉투 필요해요",
+          "要袋子"
+        ]
+      },
+      "not_needed": {
+        "label_ui_ko": "봉투 필요 없음",
+        "patterns": [
+          "no\\s*(paper\\s*)?bag",
+          "without\\s*(a\\s*)?(paper\\s*)?bag",
+          "don'?t\\s*need\\s*(a\\s*)?(paper\\s*)?bag",
+          "봉투 괜찮아요",
+          "봉투 필요 없어요",
+          "不要袋子",
+          "不用袋子"
+        ]
+      }
+    },
+    "payment_method": {
+      "card": {
+        "label_ui_ko": "카드 결제",
+        "patterns": [
+          "\\bcard\\b",
+          "\\bcredit\\s*card\\b",
+          "\\bdebit\\s*card\\b",
+          "카드",
+          "银行卡",
+          "信用卡",
+          "刷卡"
+        ]
+      },
+      "cash": {
+        "label_ui_ko": "현금 결제",
+        "patterns": [
+          "\\bcash\\b",
+          "현금",
+          "现金",
+          "現金"
+        ]
+      },
+      "mobile_pay": {
+        "label_ui_ko": "모바일 결제",
+        "patterns": [
+          "\\bmobile\\s*pay\\b",
+          "\\bphone\\s*pay\\b",
+          "모바일 결제",
+          "휴대폰 결제",
+          "手机支付",
+          "手機支付"
+        ]
+      },
+      "samsung_pay": {
+        "label_ui_ko": "삼성페이",
+        "patterns": [
+          "samsung\\s*pay",
+          "삼성페이"
+        ]
+      },
+      "apple_pay": {
+        "label_ui_ko": "애플페이",
+        "patterns": [
+          "apple\\s*pay",
+          "애플페이"
+        ]
+      },
+      "wechat_pay": {
+        "label_ui_ko": "위챗페이",
+        "patterns": [
+          "wechat\\s*pay",
+          "위챗페이",
+          "微信",
+          "微信支付"
+        ]
+      },
+      "alipay": {
+        "label_ui_ko": "알리페이",
+        "patterns": [
+          "ali\\s*pay",
+          "alipay",
+          "알리페이",
+          "支付宝"
+        ]
+      }
+    },
+    "availability_query": {
+      "iced_coffee": {
+        "label_ui_ko": "아이스 브루드 커피 가능 여부 문의",
+        "patterns": [
+          "\\bdo\\s*you\\s*(do|have|serve|make)\\s*iced\\s*coffees?\\b",
+          "\\bcan\\s*you\\s*(do|make|serve)\\s*iced\\s*coffees?\\b",
+          "\\bdo\\s*you\\s*have\\s*iced\\s*coffees?\\b",
+          "\\biced\\s*coffees?\\s*(available|possible)\\b",
+          "아이스\\s*커피\\s*(되나요|가능한가요|있나요)",
+          "冰咖啡.*(有吗|有嗎|可以吗|可以嗎)"
+        ]
+      },
+      "cold_brew": {
+        "label_ui_ko": "콜드브루 가능 여부 문의",
+        "patterns": [
+          "\\bdo\\s*you\\s*(do|have|serve|make)\\s*cold\\s*brew\\b",
+          "\\bcan\\s*you\\s*(do|make|serve)\\s*cold\\s*brew\\b",
+          "콜드\\s*브루\\s*(되나요|가능한가요|있나요)",
+          "冷萃.*(有吗|有嗎|可以吗|可以嗎)"
+        ]
+      }
+    }
+  }
+}

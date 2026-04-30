@@ -1,0 +1,35 @@
+# ============================
+# VoiceProject requirements
+# Python 3.11 recommended
+# ============================
+
+# STT - Faster Whisper
+faster-whisper==1.0.3
+ctranslate2>=4.0.0
+
+# av - pre-built wheel (avoids C++ compiler requirement)
+av==12.3.0
+
+# Translation - M2M100
+transformers>=4.40.0
+sentencepiece>=0.1.99
+sacremoses>=0.0.53
+
+# TTS - OpenVoice V2
+torch>=2.1.0
+torchaudio>=2.1.0 --extra-index-url https://download.pytorch.org/whl/cu121
+librosa>=0.10.0
+soundfile>=0.12.1
+scipy>=1.11.0
+
+# HuggingFace
+huggingface-hub>=0.21.0
+accelerate>=0.27.0
+
+# Audio processing
+pydub>=0.25.1
+numpy>=1.24.0
+
+# Utilities
+tqdm>=4.66.0
+loguru>=0.7.2

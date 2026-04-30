@@ -1,0 +1,63 @@
+{
+  "description": "SMART STT v2.6: 프론트엔드에서 선택한 언어(en/zh)를 STT에 강제 전달하고, STT 자동 언어판정 없이 base/tuned만 beam_size=5로 비교한다.",
+  "models": [
+    "base",
+    "tuned"
+  ],
+  "languages": [
+    "en",
+    "zh"
+  ],
+  "frontend_language": {
+    "required": true,
+    "allowed": [
+      "en",
+      "zh"
+    ],
+    "skip_stt_language_detection": true
+  },
+  "final_selection": {
+    "beam_size": 5,
+    "vad_filter": true,
+    "min_silence_duration_ms": 500,
+    "condition_on_previous_text": false,
+    "skip_missing_model": true
+  },
+  "output": {
+    "print_only_best": true,
+    "save_best_for_translate": true,
+    "save_candidate_debug": true
+  },
+  "scoring": {
+    "language_probability_weight": 20,
+    "keyword_weight": 8,
+    "item_weight": 18,
+    "aux_info_weight": 10,
+    "important_slot_weights": {
+      "drink": 10,
+      "milk": 26,
+      "syrup": 14,
+      "decaf": 14,
+      "temperature": 8,
+      "size": 8,
+      "ice_amount": 10,
+      "receipt": 8,
+      "personal_cup": 8,
+      "takeout": 6,
+      "dine_in": 6,
+      "bakery": 10,
+      "availability_query": 6
+    },
+    "filtered_text_bonus": 8,
+    "reasonable_length_bonus": 8,
+    "requested_language_shape_bonus": 8,
+    "empty_text_penalty": 100,
+    "too_short_penalty": 25,
+    "repeat_penalty": 6,
+    "weird_symbol_penalty": 10
+  },
+  "meta": {
+    "version": "2.6-frontlang",
+    "note": "Frontend chooses language first; STT receives --language and skips auto detection. Final beam is fixed at 5."
+  }
+}
